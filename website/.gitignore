@@ -1,0 +1,10 @@
+/node_modules
+_site
+.sass-cache
+.jekyll-metadata
+.DS_Store
+.asset-cache
+
+# Flow build artifacts are copied here:
+/static/master
+/_data/flow_dot_js_versions.csv

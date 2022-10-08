@@ -1,0 +1,67 @@
+>>> a.js (#changes: 1)
+// @flow
+
+class C0 { }
+class C1 { m1() { return C0; } }
+class C2 { m2() { return C1; } }
+class C3 { m3() { return C2; } }
+class C4 { m4(): typeof C3 { return C3; } }
+
+module.exports = C4;
+
+>>> b.js (#changes: 1)
+// @flow
+
+class C0 { }
+class C1 { m1() { return C0; } }
+class C2 { m2() { return C1; } }
+class C3 { m3(): typeof C2 { return C2; } }
+
+module.exports = C3;
+
+>>> c.js (#changes: 1)
+// @flow
+
+class C0 { }
+class C1 { m1() { return C0; } }
+class C2 { m2(): typeof C1 { return C1; } }
+
+module.exports = C2;
+
+>>> d.js (#changes: 1)
+// @flow
+
+class C0 { }
+class C1 { m1(): typeof C0 { return C0; } }
+
+module.exports = C1;
+
+>>> Launching report...
+
+Stats:
+  Files changed:                            4
+  Number of sig. ver. errors:               4
+  Number of annotations required:           4
+  Number of annotations added:              4
+  Total size of annotations:                4
+  Number of annotations skipped:            0
+
+Errors:
+  Missing annot./normalizer error:          0
+  Validation Error:                         0
+  Import Error:
+    Loc source none:                        0
+    Parsing heaps get ast error:            0
+    Indeterminate module type:              0
+    No matching export:                     0
+    Unrecognizable module error:            0
+  Serializer error:                         0
+  Unsupported error kind:                   0
+
+Warnings:
+  Skipping arrow function:                  0
+  Large type added:                         0
+  Location unhandled:                       0
+  Empty NoUpper:                            0
+  Empty SomeKnownUpper:                     0
+
